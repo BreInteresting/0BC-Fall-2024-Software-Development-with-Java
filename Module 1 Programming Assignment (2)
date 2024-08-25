@@ -1,0 +1,40 @@
+/** 
+*This program that prompts the user to enter an integer and reports whether the integer is a palindrome.
+* Brianna Manning
+* 8/25/2024
+*/
+
+import java.util.Scanner;
+
+public class PalindromeInteger {
+    
+    /** return the reversal of an integer */
+    public static int reverse(int number) {
+        int reversedNumber = 0;
+        while (number != 0) {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+        return reversedNumber;
+    }
+
+    /** check if a number is a palindrome */
+    public static boolean isPalindrome(int number) {
+        return number == reverse(number);
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter an integer: ");
+        int num = input.nextInt();
+        
+        if (isPalindrome(num)) {
+            System.out.println(num + " is a palindrome.");
+        } else {
+            System.out.println(num + " is not a palindrome.");
+        }
+        
+        input.close();
+    }
+}
