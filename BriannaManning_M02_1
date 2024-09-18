@@ -1,63 +1,79 @@
 /**
- * Description: This program defines a MyPoint class to represent a point with x- and y-coordinates.
+ * Description: Implementation of the MyDate class along with a test program that creates two MyDate objects and displays their year, month, and day:
  * Brianna Manning
  * 09.02.2024
  * BriannaManning_M02_2
  */
 
- public class MyPoint {
-    public MyPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
+
+public class MyDate {
+    private int year;
+    private int month;
+    private int day;
+
+        public static void main(String[] args) {
+        MyDate date1 = new MyDate();
+        MyDate date2 = new MyDate(34355555133101L);
+
+        date1.setDateManually();
+
+        System.out.println("Date 1: Year: " + date1.getYear() + ", Month: " + date1.getMonth() + ", Day: " + date1.getDay());
+        System.out.println("Date 2: Year: " + date2.getYear() + ", Month: " + date2.getMonth() + ", Day: " + date2.getDay());
     }
 
-    private double x;
-    private double y;
-
-    // to create a point at (0, 0)
-    public MyPoint() {
-        this.x = 0;
-        this.y = 0;
+    public MyDate() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        this.year = calendar.get(GregorianCalendar.YEAR);
+        this.month = calendar.get(GregorianCalendar.MONTH);
+        this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
-    //to create a point with specified coordinates
-   
-    public MyPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public MyDate(long elapsedTime) {
+        setDate(elapsedTime);
     }
 
-    // Getter method for x coordinate
-    public double getX() {
-        return x;
+    public MyDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
-    // Getter method for y coordinate
-    public double getY() {
-        return y;
+    public int getYear() {
+        return year;
     }
 
-    //calculate the distance between this point and a specified point
-    public double distance(MyPoint point) {
-        return Math.sqrt(Math.pow(point.getX() - this.x, 2) + Math.pow(point.getY() - this.y, 2));
+    public int getMonth() {
+        return month;
     }
 
-    //calculate the distance between this point and a point with specified x and y coordinates
-    public double distance(double x, double y) {
-        return Math.sqrt(Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2));
+    public int getDay() {
+        return day;
     }
 
-    // Static method to calculate the distance between two MyPoint objects
-    public static double distance(MyPoint point1, MyPoint point2) {
-        return Math.sqrt(Math.pow(point2.getX() - point1.getX(), 2) + Math.pow(point2.getY() - point1.getY(), 2));
+    public void setDate(long elapsedTime) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(elapsedTime);
+        this.year = calendar.get(GregorianCalendar.YEAR);
+        this.month = calendar.get(GregorianCalendar.MONTH);
+        this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
-    // Main method to test the MyPoint class
-    public static void main(String[] args) {
-        MyPoint point1 = new MyPoint(); // Create a point at (0, 0)
-        MyPoint point2 = new MyPoint(10, 30.5); // Create a point at (10, 30.5)
+    public void setDateManually() {
+        Scanner input = new Scanner(System.in);
 
-        //calculate and display the distance between point1 and point2
-        System.out.println("Distance between point1 and point2: " + point1.distance(point2));
+        System.out.print("Enter year: ");
+        this.year = input.nextInt();
+
+        System.out.print("Enter month (0-based): ");
+        this.month = input.nextInt();
+
+        System.out.print("Enter day: ");
+        this.day = input.nextInt();
+
+        input.close();
     }
+
+
 }
