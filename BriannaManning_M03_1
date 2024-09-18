@@ -1,0 +1,55 @@
+
+
+import java.util.Scanner;
+
+public class DecimalToFraction {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a decimal number: ");
+        String decimalStr = input.nextLine().trim();
+
+        if (decimalStr.isEmpty() || !decimalStr.matches("-?\\d+(\\.\\d+)?")) {
+            System.out.println("Invalid input. Please enter a valid decimal number.");
+            return;
+        }
+
+        // Check if the decimal number is negative
+        boolean isNegative = decimalStr.startsWith("-");
+        if (isNegative) {
+            decimalStr = decimalStr.substring(1); // Remove the negative sign
+        }
+
+        // Extract integer and fractional parts
+        String[] parts = decimalStr.split("\\.");
+        int integerPart = Integer.parseInt(parts[0]);
+        String fractionalPart = (parts.length > 1) ? parts[1] : "0";
+
+        // Calculate the denominator based on the number of decimal places
+        int denominator = (int) Math.pow(10, fractionalPart.length());
+
+        // Calculate the numerator
+        int numerator = Integer.parseInt(fractionalPart) + integerPart * denominator;
+
+        if (isNegative) {
+            numerator = -numerator;
+        }
+
+        // Find the greatest common divisor and simplify the fraction
+        int gcd = gcd(Math.abs(numerator), denominator);
+        numerator /= gcd;
+        denominator /= gcd;
+
+        System.out.println("The fraction number is " + numerator + "/" + denominator);
+
+        input.close();
+    }
+
+    // Method to find the greatest common divisor using Euclidean algorithm
+    public static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+}
