@@ -1,4 +1,9 @@
-
+/**
+ * Description: This program prompts the user to enter a decimal number, converts it to a fraction, and then displays the fraction.
+ * Brianna Manning
+ * 09.18.2024
+ * BriannaManning_M03_1
+ */
 
 import java.util.Scanner;
 
