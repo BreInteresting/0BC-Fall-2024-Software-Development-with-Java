@@ -1,3 +1,10 @@
+/**
+ * Description: This program implements the Rational class using BigInteger for the numerator and denominator.
+ * Brianna Manning
+ * 09.02.2024
+ * BriannaManning_M02_2
+ */
+
 import java.util.Scanner;
 
 public class DecimalToFraction {
