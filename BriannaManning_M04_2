@@ -9,20 +9,67 @@ import java.util.*;
 import java.io.*;
 
 public class CountKeywords {
+
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter a Java source file: ");
-        String filename = input.nextLine();
-        
-        File file = new File(filename);
+        boolean running = true;
 
-        if (file.exists()) {
-            System.out.println("The number of keywords in " + filename + " is " + countKeywords(file));
-        } else {
-            System.out.println("File " + filename + " does not exist");
+        while (running) {
+            // User menu for selecting the operation
+            System.out.println("Choose an option:");
+            System.out.println("1. Count keywords in a Java source file");
+            System.out.println("2. Create a new Java file");
+            System.out.println("3. End the program");
+
+            int choice = input.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a Java source file: ");
+                    String filename = input.next();
+
+                    File file = new File(filename);
+
+                    if (file.exists()) {
+                        System.out.println("The number of keywords in " + filename + " is " + countKeywords(file));
+                    } else {
+                        System.out.println("File " + filename + " does not exist");
+                    }
+                    break;
+                case 2:
+                    createJavaFile();
+                    break;
+                case 3:
+                    System.out.println("Ending the program...");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         }
     }
 
+    // Method to create a new Java file with user input
+    public static void createJavaFile() {
+        try {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter Java code:\n");
+            String code = input.nextLine();
+
+            System.out.print("Enter a file name to save the Java code: ");
+            String filename = input.nextLine();
+
+            FileWriter writer = new FileWriter(filename);
+            writer.write(code);
+            writer.close();
+
+            System.out.println("Java code saved to file: " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to count keywords in a Java file
     public static int countKeywords(File file) throws Exception {
         String[] keywordString = {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const",
                 "continue", "default", "do", "double", "else", "enum", "extends", "for", "final", "finally", "float", "goto",
@@ -63,6 +110,51 @@ public class CountKeywords {
                         inString = true;
                     }
                 } else if (keywordSet.contains(word)) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+}
+        int count = 0;
+        boolean inComment = false; // Flag to track if currently inside a comment
+        boolean inString = false; // Flag to track if currently inside a string literal
+
+        // scanner to read the file
+        Scanner input = new Scanner(file);
+
+        // iterate through each word in the file
+        while (input.hasNext()) {
+            String word = input.next();
+
+            if (inComment) {
+                // Check for end of block comment
+                if (word.contains("*/")) {
+                    inComment = false;
+                }
+            } else if (inString) {
+                // Check for end of string literal
+                if (word.contains("\"")) {
+                    inString = false;
+                }
+            } else {
+                if (word.startsWith("//")) {
+                    // Line comment, ignore the rest of the line
+                    continue;
+                } else if (word.startsWith("/*")) {
+                    // Start of block comment
+                    if (!word.contains("*/")) {
+                        inComment = true;
+                    }
+                } else if (word.startsWith("\"")) {
+                    // Start of string literal
+                    if (!word.contains("\"")) {
+                        inString = true;
+                    }
+                } else if (keywordSet.contains(word)) {
+                    // Found a keyword, increment the count
                     count++;
                 }
             }
