@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Stack;
+
+public class GroupingSymbolChecker {
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Please provide the source-code file name as a command-line argument.");
+            return;
+        }
+
+        String fileName = args[0];
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            StringBuilder code = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                code.append(line).append("\n");
+            }
+
+            if (checkGroupingSymbols(code.toString())) {
+                System.out.println("All grouping symbols are correctly matched.");
+            } else {
+                System.out.println("Unmatched grouping symbols remain.");
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + e.getMessage());
+        }
+    }
+
+    private static boolean checkGroupingSymbols(String code) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : code.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else if (c == ')' || c == '}' || c == ']') {
+                if (stack.isEmpty() || !isMatchingPair(stack.pop(), c)) {
+                    return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
+    private static boolean isMatchingPair(char open, char close) {
+        return (open == '(' && close == ')') || (open == '{' && close == '}') || (open == '[' && close == ']');
+    }
+}
