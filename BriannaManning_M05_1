@@ -6,7 +6,6 @@
  * BriannaManning_M05_1
  */
  
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -20,16 +19,16 @@ public class ImageGridPaneExample extends Application {
     public void start(Stage primaryStage) {
         GridPane gridPane = new GridPane();
 
-        Image image1 = new Image("file:Images/image1.jpg");
+        Image image1 = new Image("file:Images/flag1.jpg");
         ImageView imageView1 = new ImageView(image1);
 
-        Image image2 = new Image("file:Images/image2.jpg");
+        Image image2 = new Image("file:Images/flag2.jpg");
         ImageView imageView2 = new ImageView(image2);
 
-        Image image3 = new Image("file:Images/image3.jpg");
+        Image image3 = new Image("file:Images/flag6.jpg");
         ImageView imageView3 = new ImageView(image3);
 
-        Image image4 = new Image("file:Images/image4.jpg");
+        Image image4 = new Image("file:Images/flag7.jpg");
         ImageView imageView4 = new ImageView(image4);
 
         gridPane.add(imageView1, 0, 0);
