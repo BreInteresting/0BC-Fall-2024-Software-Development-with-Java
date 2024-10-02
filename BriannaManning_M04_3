@@ -1,3 +1,10 @@
+/**
+ * Description: Modify the Node class to add the new data field name previous to refer to the previous node in the list
+* Brianna Manning
+ * 10.2.2024
+ * BriannaManning_M04_3
+ */
+
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
