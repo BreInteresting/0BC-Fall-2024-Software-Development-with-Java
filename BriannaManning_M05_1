@@ -1,5 +1,11 @@
-
-
+/**
+ * Description: /**
+ * Description: Implementation of the MyDate class along with a test program that creates two MyDate objects and displays their year, month, and day:
+ * Brianna Manning
+ * 10.02.2024
+ * BriannaManning_M05_1
+ */
+ 
 
 import javafx.application.Application;
 import javafx.stage.Stage;
