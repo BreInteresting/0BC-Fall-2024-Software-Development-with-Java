@@ -1,0 +1,79 @@
+
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class TextColorSelector extends Application {
+
+    private Text text;
+    private Slider redSlider;
+    private Slider greenSlider;
+    private Slider blueSlider;
+    private Slider opacitySlider;
+
+    @Override
+    public void start(Stage primaryStage) {
+        text = new Text("Colorful Text");
+        text.setStyle("-fx-font-size: 24;");
+
+        redSlider = createColorSlider("Red", 0, 255);
+        greenSlider = createColorSlider("Green", 0, 255);
+        blueSlider = createColorSlider("Blue", 0, 255);
+        opacitySlider = createColorSlider("Opacity", 0, 100);
+
+        redSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateColor());
+        greenSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateColor());
+        blueSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateColor());
+        opacitySlider.valueProperty().addListener((obs, oldVal, newVal) -> updateColor());
+
+        VBox root = new VBox(10);
+        root.getChildren().addAll(text, redSlider, greenSlider, blueSlider, opacitySlider);
+
+        Scene scene = new Scene(root, 300, 200);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Text Color Selector");
+        primaryStage.show();
+    }
+
+    private Slider createColorSlider(String name, double min, double max) {
+        Slider slider = new Slider(min, max, max / 2);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit((max - min) / 2);
+        slider.setBlockIncrement(1);
+        slider.setPrefWidth(200);
+        slider.setSnapToTicks(true);
+        slider.setLabelFormatter(new Slider.LabelFormatter() {
+            @Override
+            public String toString(Double value) {
+                return String.format("%.0f", value);
+            }
+        });
+
+        Label label = new Label(name);
+        VBox sliderWithLabel = new VBox();
+        sliderWithLabel.getChildren().addAll(label, slider);
+
+        return sliderWithLabel;
+    }
+
+    private void updateColor() {
+        double red = redSlider.getValue() / 255;
+        double green = greenSlider.getValue() / 255;
+        double blue = blueSlider.getValue() / 255;
+        double opacity = opacitySlider.getValue() / 100;
+
+        Color color = Color.color(red, green, blue, opacity);
+        text.setFill(color);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
