@@ -1,4 +1,9 @@
-
+/**
+ * Description: Write a program that displays the color of a circle as black when the mouse button is pressed, and as white when the mouse button is released.
+ * Brianna Manning
+ * 10.02.2024
+ * BriannaManning_M05_2
+ */
 
 import javafx.application.Application;
 import javafx.scene.Scene;
