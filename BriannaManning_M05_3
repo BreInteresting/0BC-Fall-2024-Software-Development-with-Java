@@ -1,4 +1,9 @@
-
+/**
+ * Description: Write a program that uses scroll bars or sliders to select the color for a text,
+ * Brianna Manning
+ * 10.02.2024
+ * BriannaManning_M05_3
+ */
 
 import javafx.application.Application;
 import javafx.scene.Scene;
