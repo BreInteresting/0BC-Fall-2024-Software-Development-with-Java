@@ -1,0 +1,90 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a directory of items
+        List<Item> itemDirectory = buildItemDirectory();
+
+        // Create a shop and add items from the directory
+        Shop shop = new Shop("General Store", 50, new ArrayList<>(), 5000);
+        shop.addItemsFromDirectory(itemDirectory);
+
+        // Create JavaFX UI
+        ListView<Item> listView = new ListView<>();
+        listView.getItems().addAll(shop.getInventory());
+
+        VBox root = new VBox(listView);
+        Scene scene = new Scene(root, 400, 300);
+
+        primaryStage.setTitle("D&D Item Shop Inventory");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private static List<Item> buildItemDirectory() {
+        List<Item> itemDirectory = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            itemDirectory.add(new Item("Armor" + i, "Description", 100, "Stats", "Common", "Armor"));
+            itemDirectory.add(new Item("Weapon" + i, "Description", 150, "Stats", "Rare", "Weapon"));
+            itemDirectory.add(new Item("Magical Item" + i, "Description", 200, "Stats", "Legendary", "Magical"));
+            itemDirectory.add(new Item("Wondrous Item" + i, "Description", 250, "Stats", "Rare", "Wondrous"));
+            itemDirectory.add(new Item("Potion" + i, "Description", 50, "Stats", "Common", "Potion"));
+        }
+
+        return itemDirectory;
+    }
+}
+
+class Shop {
+    String type;
+    int size;
+    List<Item> inventory;
+    double funds;
+
+    public Shop(String type, int size, List<Item> inventory, double funds) {
+        this.type = type;
+        this.size = size;
+        this.inventory = inventory;
+        this.funds = funds;
+    }
+
+    public void addItemsFromDirectory(List<Item> items) {
+        this.inventory.addAll(items);
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void addItem(Item item) {
+        this.inventory.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.inventory.remove(item);
+    }
+}
+
+class Item {
+    private String name;
+    private String description;
+    private double price;
+    private String stats;
+    private String rarity;
+    private String type;
+
+    // Constructor, getters, and setters
+}
