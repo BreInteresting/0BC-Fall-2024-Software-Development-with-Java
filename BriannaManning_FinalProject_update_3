@@ -1,0 +1,122 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Main {
+    public static void main(String[] args) {
+        // Create a directory of items
+        List<Item> itemDirectory = buildItemDirectory();
+
+        // Create a shop and add items from the directory
+        Shop shop = new Shop("General Store", 50, 5000);
+        shop.addItemsFromDirectory(itemDirectory);
+
+        // Display shop inventory
+        shop.displayInventory();
+
+        // Get a random item from the shop
+        Item randomItem = shop.getRandomItem();
+        System.out.println("\nRandom Item: " + randomItem.getName());
+
+        // Get all items of a specific type
+        List<Item> weapons = shop.getItemsByType("Weapon");
+        System.out.println("\nWeapons:");
+        for (Item weapon : weapons) {
+            System.out.println(weapon.getName());
+        }
+    }
+
+    private static List<Item> buildItemDirectory() {
+        List<Item> itemDirectory = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            itemDirectory.add(new Item("Armor" + i, "Description", 100, "Stats", "Common", "Armor"));
+            itemDirectory.add(new Item("Weapon" + i, "Description", 150, "Stats", "Rare", "Weapon"));
+            itemDirectory.add(new Item("Magical Item" + i, "Description", 200, "Stats", "Legendary", "Magical"));
+            itemDirectory.add(new Item("Wondrous Item" + i, "Description", 250, "Stats", "Rare", "Wondrous"));
+            itemDirectory.add(new Item("Potion" + i, "Description", 50, "Stats", "Common", "Potion"));
+        }
+
+        return itemDirectory;
+    }
+}
+
+// Shop Class
+class Shop {
+    String type;
+    int size;
+    List<Item> inventory;
+    double funds; 
+
+    public Shop(String type, int size, List<Item> inventory, double funds) {
+        this.type = type;
+        this.size = size;
+        this.inventory = inventory;
+        this.funds = funds;
+    }
+
+    public void addItem(Item item) {
+        this.inventory.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.inventory.remove(item);
+    }
+}
+
+public class Item {
+    private String name;
+    private String description;
+    private double price;
+    private String stats;
+    private String rarity;
+    private String type;
+
+    // Constructor
+    public Item(String name, String description, double price, String stats, String rarity, String type) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stats = stats;
+        this.rarity = rarity;
+        this.type = type;
+    }
+
+    // Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // Add getters and setters for other attributes like price, stats, rarity, and type
+}
+
+public class Transaction {
+    private String buyer;
+    private String seller;
+    private Item item;
+    private String transactionType;
+    private double transactionAmount;
+
+    // Constructor
+    public Transaction(String buyer, String seller, Item item, String transactionType, double transactionAmount) {
+        this.buyer = buyer;
+        this.seller = seller;
+        this.item = item;
+        this.transactionType = transactionType;
+        this.transactionAmount = transactionAmount;
+    }
+
+    // Add getters and setters for all attributes
+}
