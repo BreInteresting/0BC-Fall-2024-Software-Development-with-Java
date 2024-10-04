@@ -88,3 +88,59 @@ class Item {
 
     // Constructor, getters, and setters
 }
+public class Item {
+    private String name;
+    private String description;
+    private double price;
+    private String stats;
+    private String rarity;
+    private String type;
+
+    // Constructor
+    public Item(String name, String description, double price, String stats, String rarity, String type) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stats = stats;
+        this.rarity = rarity;
+        this.type = type;
+    }
+
+    // Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // Add getters and setters for other attributes like price, stats, rarity, and type
+}
+
+public class Transaction {
+    private String buyer;
+    private String seller;
+    private Item item;
+    private String transactionType;
+    private double transactionAmount;
+
+    // Constructor
+public Transaction(String buyer, String seller, Item item, String transactionType, double transactionAmount) {
+        this.buyer = buyer;
+        this.seller = seller;
+        this.item = item;
+        this.transactionType = transactionType;
+        this.transactionAmount = transactionAmount;
+    }
+
+    // Add getters and setters for all attributes
+}
