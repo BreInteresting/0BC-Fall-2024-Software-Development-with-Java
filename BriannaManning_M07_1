@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 8px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<h2>Loan Payment Calculator</h2>
+<form id="loanForm" action="/your-servlet-url" method="post">
+    <label for="loanAmount">Loan Amount:</label>
+    <input type="text" id="loanAmount" name="loanAmount" required>
+    <label for="interestRate">Annual Interest Rate (%):</label>
+    <input type="text" id="interestRate" name="interestRate" required>
+    <label for="numOfYears">Number of Years:</label>
+    <input type="text" id="numOfYears" name="numOfYears" required>
+    <button type="submit">Compute Loan Payment</button>
+</form>
+</body>
+</html>
