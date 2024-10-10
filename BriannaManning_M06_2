@@ -1,3 +1,10 @@
+/**
+ * Description: a program that inserts a thousand records into a database, and compare the performance with and without batch updates, 
+ * Brianna Manning
+ * 10.1.2024
+ * BriannaManning_M06_2
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
