@@ -1,52 +1,74 @@
-/**
- * Description: Write an HTML form that prompts the user to enter the loan amount, interest rate, and number of years.
- * Brianna Manning
- * 10.02.2024
- * BriannaManning_M07_2
- */
+<!-- 
+    Description: Write an HTML form that prompts the user to enter the loan amount, interest rate, and number of years.
+    Author: Brianna Manning
+    Date: 10.02.2024
+    Filename: BriannaManning_M07_2
+-->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loan Calculator</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    input[type="text"] {
-        width: 100%;
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-    button {
-        padding: 8px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-</style>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+
+    <!-- Styling for the document -->
+    <style>
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif; /* Set the font family for the body text */
+            margin: 20px; /* Add margin around the body content */
+        }
+
+        /* Label styling */
+        label {
+            display: block; /* Display labels as block elements */
+            margin-bottom: 5px; /* Add bottom margin to labels */
+        }
+
+        /* Text input styling */
+        input[type="text"] {
+            width: 100%; /* Set the width of text input fields to 100% */
+            padding: 5px; /* Add padding inside text input fields */
+            margin-bottom: 10px; /* Add bottom margin to text input fields */
+        }
+
+        /* Button styling */
+        button {
+            padding: 8px 20px; /* Set padding for the button */
+            background-color: #4CAF50; /* Set background color for the button */
+            color: white; /* Set text color for the button */
+            border: none; /* Remove border from the button */
+            cursor: pointer; /* Set cursor style to pointer for the button */
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #45a049; /* Change background color on button hover */
+        }
+    </style>
 </head>
 <body>
-<h2>Loan Payment Calculator</h2>
-<form id="loanForm" action="/your-servlet-url" method="post">
-    <label for="loanAmount">Loan Amount:</label>
-    <input type="text" id="loanAmount" name="loanAmount" required>
-    <label for="interestRate">Annual Interest Rate (%):</label>
-    <input type="text" id="interestRate" name="interestRate" required>
-    <label for="numOfYears">Number of Years:</label>
-    <input type="text" id="numOfYears" name="numOfYears" required>
-    <button type="submit">Compute Loan Payment</button>
-</form>
+    <!-- Heading for the loan payment calculator -->
+    <h2>Loan Payment Calculator</h2>
+
+    <!-- Form for user input -->
+    <form id="loanForm" action="/your-servlet-url" method="post">
+        <!-- Label and input field for loan amount -->
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="text" id="loanAmount" name="loanAmount" required>
+
+        <!-- Label and input field for annual interest rate -->
+        <label for="interestRate">Annual Interest Rate (%):</label>
+        <input type="text" id="interestRate" name="interestRate" required>
+
+        <!-- Label and input field for number of years -->
+        <label for="numOfYears">Number of Years:</label>
+        <input type="text" id="numOfYears" name="numOfYears" required>
+
+        <!-- Button to submit the form data -->
+        <button type="submit">Compute Loan Payment</button>
+    </form>
 </body>
 </html>
