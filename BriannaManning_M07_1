@@ -1,3 +1,10 @@
+/**
+ * Description: Write an HTML form that prompts the user to enter the loan amount, interest rate, and number of years.
+ * Brianna Manning
+ * 10.02.2024
+ * BriannaManning_M07_2
+ */
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
